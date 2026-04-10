@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .about-text p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .skills {
+            background-color: #f9f9f9;
+        }
+        
+        .skills h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .skill-card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .skill-card p {
+            color: #666;
+        }
+        
+        .projects {
+            background-color: white;
+        }
+        
+        .projects h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: #667eea;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .project-content p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .project-content a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .project-content a:hover {
+            background-color: #764ba2;
+        }
+        
+        .contact {
+            background-color: #f9f9f9;
+        }
+        
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .form-group button {
+            padding: 10px 20px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .form-group button:hover {
+            background-color: #764ba2;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>个人主页</h1>
+            <p>欢迎访问我的个人网站</p>
+        </div>
+    </header>
+    
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>关于我</h2>
+                    <p>你好，我是一名软件开发者，拥有丰富的编程经验和项目开发经历。我热爱技术，喜欢不断学习新的知识和技能。</p>
+                    <p>我的专业领域包括前端开发、后端开发和移动应用开发。我擅长使用多种编程语言和框架，能够独立完成从需求分析到项目部署的整个开发过程。</p>
+                    <p>除了技术之外，我还喜欢阅读、旅行和运动。我相信保持平衡的生活方式有助于提高工作效率和创造力。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20developer%20portrait&image_size=portrait_4_3" alt="个人照片">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="skills">
+        <div class="container">
+            <h2>我的技能</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>前端开发</h3>
+                    <p>精通HTML、CSS、JavaScript，熟悉React、Vue等前端框架，能够构建响应式、交互性强的网页应用。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>后端开发</h3>
+                    <p>熟练掌握Python、Java等后端语言，了解数据库设计和API开发，能够构建稳定、高效的服务器端应用。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>移动开发</h3>
+                    <p>了解Flutter、React Native等移动开发框架，能够开发跨平台的移动应用。</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>云计算</h3>
+                    <p>熟悉云服务平台，了解容器化技术和DevOps实践，能够部署和管理云应用。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="projects">
+        <div class="container">
+            <h2>我的项目</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>项目一</h3>
+                        <p>这是一个基于React的前端项目，实现了一个现代化的用户界面，具有良好的用户体验和响应式设计。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>项目二</h3>
+                        <p>这是一个后端API项目，使用Python和Flask框架开发，提供了完整的RESTful API接口。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>项目三</h3>
+                        <p>这是一个移动应用项目，使用Flutter开发，支持iOS和Android平台，具有丰富的功能和流畅的用户体验。</p>
+                        <a href="#">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="contact">
+        <div class="container">
+            <h2>联系我</h2>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">姓名</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">邮箱</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">留言</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">发送</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 个人主页. 保留所有权利.</p>
+        </div>
+    </footer>
+</body>
+</html>
