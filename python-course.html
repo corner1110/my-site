@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础语法 - 编程素养培养 - 学习平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#10B981',
+                        accent: '#F59E0B',
+                        dark: '#1E293B',
+                        light: '#F8FAFC',
+                        python: '#3776AB'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                },
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .code-block {
+                font-family: 'Fira Code', 'Consolas', monospace;
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 8px 20px -5px rgba(0, 0, 0, 0.15);
+            }
+        }
+    </style>
+</head>
+<body class="bg-light text-dark">
+    <header class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+                    <span class="text-xl font-bold text-primary">学习平台</span>
+                </a>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="font-medium hover:text-primary transition-colors">首页</a>
+                <a href="#" class="font-medium text-python border-b-2 border-python">Python课程</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors">登录</button>
+                <button class="md:hidden text-dark text-xl">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-16 bg-gradient-to-r from-python/10 to-primary/10">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                <div class="flex items-center space-x-2 mb-4">
+                    <span class="px-3 py-1 bg-python text-white text-sm rounded-full">基础课程</span>
+                    <span class="px-3 py-1 bg-gray-200 text-gray-700 text-sm rounded-full">基础编程素养</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    Python<span class="text-python">基础语法</span>
+                </h1>
+                <p class="text-lg mb-6 text-gray-600">
+                    从零开始学习Python基础语法，培养编程思维，掌握核心编程概念和实用技能。
+                </p>
+                    <div class="flex items-center space-x-6 mb-8">
+                        <div class="flex items-center">
+                            <i class="fa fa-star text-yellow-400"></i>
+                            <span class="ml-1 font-medium">4.9</span>
+                            <span class="ml-1 text-gray-500">(1,234)</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-users text-gray-500"></i>
+                            <span class="ml-1 text-gray-500">15,678 学员</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-clock-o text-gray-500"></i>
+                            <span class="ml-1 text-gray-500">12小时</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="px-8 py-3 bg-python text-white rounded-md hover:bg-python/90 transition-colors font-medium text-lg">
+                            <i class="fa fa-play mr-2"></i>开始学习
+                        </button>
+                        <button class="px-8 py-3 border border-python text-python rounded-md hover:bg-python hover:text-white transition-colors font-medium text-lg">
+                            <i class="fa fa-heart-o mr-2"></i>收藏
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=python%20programming%20language%20logo%20and%20code%20on%20screen&image_size=landscape_16_9" alt="Python编程" class="rounded-lg shadow-xl w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">课程大纲</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">专注于Python基础语法和编程素养的培养</p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-4">
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(1)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">1</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">编程基础概念</h3>
+                                    <p class="text-sm text-gray-500">基础编程素养培养</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-1"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-1">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">什么是编程</span>
+                                    <span class="text-sm text-gray-500">15分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">Python的优势与应用</span>
+                                    <span class="text-sm text-gray-500">20分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">编程思维培养</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：思维训练</span>
+                                    <span class="text-sm text-gray-500">20分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(2)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">2</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">Python基础语法</h3>
+                                    <p class="text-sm text-gray-500">核心语法规则</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-2"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-2">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">注释与缩进规则</span>
+                                    <span class="text-sm text-gray-500">15分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">变量与命名规范</span>
+                                    <span class="text-sm text-gray-500">20分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">基本数据类型</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：语法基础</span>
+                                    <span class="text-sm text-gray-500">30分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(3)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">3</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">运算符与表达式</h3>
+                                    <p class="text-sm text-gray-500">Python运算规则</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-3"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-3">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">算术运算符</span>
+                                    <span class="text-sm text-gray-500">20分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">比较与逻辑运算符</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">运算符优先级</span>
+                                    <span class="text-sm text-gray-500">15分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：表达式计算</span>
+                                    <span class="text-sm text-gray-500">30分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(4)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">4</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">流程控制语句</h3>
+                                    <p class="text-sm text-gray-500">Python控制结构</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-4"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-4">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">if条件语句</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">for循环与range</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">while循环与控制</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：流程控制</span>
+                                    <span class="text-sm text-gray-500">35分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(5)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">5</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">函数基础</h3>
+                                    <p class="text-sm text-gray-500">Python函数定义与使用</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-5"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-5">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">函数的定义与调用</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">参数传递与返回值</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">函数的作用域</span>
+                                    <span class="text-sm text-gray-500">20分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：函数设计</span>
+                                    <span class="text-sm text-gray-500">40分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-hover bg-white rounded-lg shadow-md overflow-hidden">
+                        <button class="w-full px-6 py-4 flex justify-between items-center" onclick="toggleLesson(6)">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-python text-white rounded-full flex items-center justify-center mr-4">
+                                    <span class="font-bold">6</span>
+                                </div>
+                                <div class="text-left">
+                                    <h3 class="font-semibold text-lg">基础数据结构</h3>
+                                    <p class="text-sm text-gray-500">Python内置数据类型</p>
+                                </div>
+                            </div>
+                            <i class="fa fa-chevron-down text-gray-400 transition-transform" id="arrow-6"></i>
+                        </button>
+                        <div class="hidden px-6 pb-4" id="lesson-6">
+                            <div class="pl-14 space-y-2">
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">列表的使用</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">字典的使用</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-play-circle-o text-python mr-3"></i>
+                                    <span class="flex-1">字符串操作</span>
+                                    <span class="text-sm text-gray-500">25分钟</span>
+                                </div>
+                                <div class="flex items-center py-2 hover:bg-gray-50 rounded px-2 cursor-pointer">
+                                    <i class="fa fa-code text-python mr-3"></i>
+                                    <span class="flex-1">实战练习：数据结构应用</span>
+                                    <span class="text-sm text-gray-500">45分钟</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">讲师介绍</h2>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="md:flex">
+                    <div class="md:w-1/3">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20python%20teacher%20portrait%20male&image_size=square" alt="张老师" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-8 md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-2">张老师</h3>
+                        <p class="text-python font-medium mb-4">Python基础教学专家</p>
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="flex items-center">
+                                <i class="fa fa-graduation-cap text-gray-500 mr-1"></i>
+                                <span class="text-sm">8年Python教学经验</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa fa-users text-gray-500 mr-1"></i>
+                                <span class="text-sm">30,000+ 基础学员</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6">
+                            专注于Python基础语法教学，擅长培养编程思维和基础素养。
+                            授课风格深入浅出，善于将抽象概念具体化，帮助初学者快速入门Python编程。
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                <i class="fa fa-github text-gray-700"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                <i class="fa fa-linkedin text-gray-700"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors">
+                                <i class="fa fa-weibo text-gray-700"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 bg-python text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">准备好掌握Python基础语法了吗？</h2>
+            <p class="mb-8 max-w-2xl mx-auto text-white/90">
+                加入我们，培养编程思维，掌握Python核心语法，为你的编程之路打下坚实基础！
+            </p>
+            <button class="px-8 py-3 bg-white text-python rounded-md hover:bg-gray-100 transition-colors font-medium text-lg">
+                开始学习基础语法
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+                        <span class="text-xl font-bold">学习平台</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4">提供优质的在线课程，帮助你实现职业目标和个人成长。</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary transition-colors">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">快速链接</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="index.html" class="hover:text-primary transition-colors">首页</a></li>
+                        <li><a href="#" class="hover:text-primary transition-colors">Python课程</a></li>
+                        <li><a href="index.html#courses" class="hover:text-primary transition-colors">全部课程</a></li>
+                        <li><a href="index.html#testimonials" class="hover:text-primary transition-colors">学员评价</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">联系我们</h3>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center">
+                            <i class="fa fa-map-marker w-4 mr-2"></i>
+                            <span>北京市朝阳区学习大厦</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-phone w-4 mr-2"></i>
+                            <span>400-123-4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa fa-envelope w-4 mr-2"></i>
+                            <span>contact@learning.com</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4">订阅通讯</h3>
+                    <p class="text-gray-400 text-sm mb-4">订阅我们的通讯，获取最新课程和学习资源</p>
+                    <div class="flex">
+                        <input type="email" placeholder="输入你的邮箱" class="px-4 py-2 w-full rounded-l-md focus:outline-none text-dark">
+                        <button class="bg-primary text-white px-4 py-2 rounded-r-md hover:bg-primary/90 transition-colors">
+                            订阅
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">
+                <p>© 2024 学习平台. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleLesson(lessonId) {
+            const lesson = document.getElementById(`lesson-${lessonId}`);
+            const arrow = document.getElementById(`arrow-${lessonId}`);
+            
+            if (lesson.classList.contains('hidden')) {
+                lesson.classList.remove('hidden');
+                arrow.style.transform = 'rotate(180deg)';
+            } else {
+                lesson.classList.add('hidden');
+                arrow.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('py-2');
+                header.classList.remove('py-3');
+            } else {
+                header.classList.add('py-3');
+                header.classList.remove('py-2');
+            }
+        });
+    </script>
+</body>
+</html>
