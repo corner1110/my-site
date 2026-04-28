@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础课程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .course-intro {
+            background-color: white;
+        }
+        
+        .course-intro h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .course-intro p {
+            margin-bottom: 20px;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .course-outline {
+            background-color: #f9f9f9;
+        }
+        
+        .course-outline h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .module {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .module h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .module h3 i {
+            margin-right: 10px;
+        }
+        
+        .module ul {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .module li {
+            margin-bottom: 10px;
+            color: #666;
+            position: relative;
+        }
+        
+        .module li::before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .learning-path {
+            background-color: white;
+        }
+        
+        .learning-path h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .path-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background-color: #667eea;
+        }
+        
+        .step:last-child::before {
+            display: none;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .step-content p {
+            color: #666;
+        }
+        
+        .start-learning {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .start-learning h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .start-learning p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .modules {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">Python基础课程</a>
+            <ul class="nav-links">
+                <li><a href="#course-intro">课程介绍</a></li>
+                <li><a href="#course-outline">课程大纲</a></li>
+                <li><a href="#learning-path">学习路径</a></li>
+                <li><a href="#start-learning">开始学习</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <header>
+        <div class="container">
+            <h1>Python基础课程</h1>
+            <p>从零基础到实战应用的完整学习路径</p>
+        </div>
+    </header>
+    
+    <section class="course-intro" id="course-intro">
+        <div class="container">
+            <h2>课程介绍</h2>
+            <p>本课程专注于培养Python基础编程素养，通过系统化的学习路径，帮助你掌握Python编程的核心概念和实用技能。</p>
+            <p>课程内容围绕五大核心模块展开：Python基础语法、数据结构、函数与模块、面向对象编程、文件操作与异常处理，构建完整的Python基础体系。</p>
+            <p>无论你是编程新手，还是想系统学习Python基础，本课程都能为你提供坚实的编程基础。</p>
+        </div>
+    </section>
+    
+    <section class="course-outline" id="course-outline">
+        <div class="container">
+            <h2>课程大纲</h2>
+            <div class="modules">
+                <div class="module">
+                    <h3><i class="fas fa-code"></i> 模块一：Python基础语法</h3>
+                    <ul>
+                        <li>Python简介与安装</li>
+                        <li>开发环境搭建</li>
+                        <li>第一个Python程序</li>
+                        <li>基本数据类型</li>
+                        <li>变量与赋值</li>
+                        <li>运算符与表达式</li>
+                        <li>条件语句（if-elif-else）</li>
+                        <li>循环语句（for、while）</li>
+                        <li>循环控制（break、continue）</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-layer-group"></i> 模块二：数据结构</h3>
+                    <ul>
+                        <li>列表（List）</li>
+                        <li>元组（Tuple）</li>
+                        <li>字典（Dictionary）</li>
+                        <li>集合（Set）</li>
+                        <li>数据结构的操作与方法</li>
+                        <li>列表推导式</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-cogs"></i> 模块三：函数与模块</h3>
+                    <ul>
+                        <li>函数定义与调用</li>
+                        <li>参数传递</li>
+                        <li>返回值</li>
+                        <li>作用域</li>
+                        <li>Lambda表达式</li>
+                        <li>模块的导入与使用</li>
+                        <li>包的概念与结构</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-object-group"></i> 模块四：面向对象编程</h3>
+                    <ul>
+                        <li>类与对象</li>
+                        <li>构造函数与析构函数</li>
+                        <li>实例方法与类方法</li>
+                        <li>继承与多态</li>
+                        <li>封装</li>
+                        <li>特殊方法</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-file-alt"></i> 模块五：文件操作与异常处理</h3>
+                    <ul>
+                        <li>文件的打开与关闭</li>
+                        <li>文件的读写操作</li>
+                        <li>上下文管理器（with语句）</li>
+                        <li>异常处理（try-except）</li>
+                        <li>异常的抛出与自定义</li>
+                        <li>常见异常类型</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="learning-path" id="learning-path">
+        <div class="container">
+            <h2>学习路径</h2>
+            <div class="path-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Python基础语法</h3>
+                        <p>掌握Python的基本语法规则，包括数据类型、变量、运算符、条件语句和循环结构。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>数据结构</h3>
+                        <p>学习Python内置的数据结构，如列表、元组、字典和集合，掌握它们的操作方法。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>函数与模块</h3>
+                        <p>掌握函数的定义与使用，学习模块的导入与管理，提高代码的组织性和复用性。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>面向对象编程</h3>
+                        <p>学习面向对象编程思想，掌握类与对象的设计与实现，理解继承、多态等核心概念。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>文件操作与异常处理</h3>
+                        <p>学习文件的读写操作，掌握异常处理机制，提高程序的健壮性和可靠性。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="start-learning" id="start-learning">
+        <div class="container">
+            <h2>开始你的Python学习之旅</h2>
+            <p>跟随本课程的学习路径，循序渐进地掌握Python编程技能</p>
+            <a href="#" class="btn">开始学习</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Python基础课程学习站点. 专注于Python编程基础素养培养.</p>
+        </div>
+    </footer>
+</body>
+</html>

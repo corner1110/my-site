@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python基础课程</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .course-intro {
+            background-color: white;
+        }
+        
+        .course-intro h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .course-intro p {
+            margin-bottom: 20px;
+            color: #666;
+            text-align: center;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .course-outline {
+            background-color: #f9f9f9;
+        }
+        
+        .course-outline h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .modules {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .module {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .module h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: #667eea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .module h3 i {
+            margin-right: 10px;
+        }
+        
+        .module ul {
+            list-style: none;
+            margin-left: 30px;
+        }
+        
+        .module li {
+            margin-bottom: 10px;
+            color: #666;
+            position: relative;
+        }
+        
+        .module li::before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: -15px;
+        }
+        
+        .learning-path {
+            background-color: white;
+        }
+        
+        .learning-path h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            color: #333;
+        }
+        
+        .path-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .step::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background-color: #667eea;
+        }
+        
+        .step:last-child::before {
+            display: none;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #667eea;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .step-content p {
+            color: #666;
+        }
+        
+        .start-learning {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+        }
+        
+        .start-learning h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .start-learning p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        /* 代码运行器样式 */
+        .code-runner {
+            position: fixed;
+            right: 20px;
+            top: 100px;
+            width: 380px;
+            max-height: 550px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 999;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .code-runner.collapsed {
+            height: 40px;
+            max-height: 40px;
+        }
+        
+        .code-runner-header {
+            background-color: #667eea;
+            color: white;
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .code-runner-header h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .code-runner-toggle {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .code-runner-content {
+            padding: 12px;
+        }
+        
+        .code-editor {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        
+        .CodeMirror {
+            height: 160px !important;
+            border-radius: 4px;
+            font-size: 0.85rem !important;
+        }
+        
+        .code-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+        
+        .code-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 80px;
+        }
+        
+        .run-btn {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .run-btn:hover {
+            background-color: #764ba2;
+        }
+        
+        .clear-btn {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .clear-btn:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .code-output {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 8px;
+            background-color: #f9f9f9;
+            min-height: 80px;
+            max-height: 160px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            white-space: pre-wrap;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 0;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .modules {
+                grid-template-columns: 1fr;
+            }
+            
+            .code-runner {
+                width: 90%;
+                right: 5%;
+                left: 5%;
+                top: 80px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="logo">个人主页</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">返回主页</a></li>
+                <li><a href="#course-intro">课程介绍</a></li>
+                <li><a href="#course-outline">课程大纲</a></li>
+                <li><a href="#learning-path">学习路径</a></li>
+                <li><a href="#start-learning">开始学习</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 代码运行器 -->
+    <div class="code-runner" id="codeRunner">
+        <div class="code-runner-header" onclick="toggleCodeRunner()">
+            <h3>Python代码运行器</h3>
+            <button class="code-runner-toggle" id="runnerToggle">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+        <div class="code-runner-content">
+            <div class="code-editor">
+                <textarea id="codeEditor"># 在此输入Python代码
+print('Hello, Python!')
+x = 10
+y = 20
+print(f'Sum: {x + y}')</textarea>
+            </div>
+            <div class="code-actions">
+                <select class="code-btn" onchange="loadExample(this.value)">
+                    <option value="">选择示例代码</option>
+                    <option value="basic" selected>基础语法示例</option>
+                    <option value="data-structures">数据结构示例</option>
+                    <option value="functions">函数示例</option>
+                    <option value="oop">面向对象示例</option>
+                    <option value="files">文件操作示例</option>
+                    <option value="pandas">Pandas示例</option>
+                </select>
+                <button class="code-btn run-btn" onclick="runCode()">运行代码</button>
+                <button class="code-btn clear-btn" onclick="clearOutput()">清空输出</button>
+                <button class="code-btn clear-btn" onclick="resetCode()">重置代码</button>
+            </div>
+            <div class="code-output" id="codeOutput">
+                输出将显示在这里...
+            </div>
+        </div>
+    </div>
+    
+    <header>
+        <div class="container">
+            <h1>Python基础课程</h1>
+            <p>从零基础到实战应用的完整学习路径</p>
+        </div>
+    </header>
+    
+    <section class="course-intro" id="course-intro">
+        <div class="container">
+            <h2>课程介绍</h2>
+            <p>本课程专注于培养Python基础编程素养，特别针对数据分析专业，通过系统化的学习路径，帮助你掌握Python编程的核心概念和实用技能。</p>
+            <p>课程内容围绕五大核心模块展开：核心语法与逻辑控制、核心数据结构、函数与模块化思维、文件操作与异常处理、数据分析"三剑客"，构建完整的Python基础体系。</p>
+            <p>在AI时代，本课程将帮助你掌握与AI沟通的底层词汇，培养驾驭AI的指令封装能力，为数据分析专业学习打下坚实基础。</p>
+        </div>
+    </section>
+    
+    <section class="course-outline" id="course-outline">
+        <div class="container">
+            <h2>课程大纲</h2>
+            <div class="modules">
+                <div class="module">
+                    <h3><i class="fas fa-code"></i> 模块一：核心语法与逻辑控制</h3>
+                    <ul>
+                        <li>Python简介与安装</li>
+                        <li>开发环境搭建</li>
+                        <li>变量与数据类型（整数、浮点数、字符串、布尔值）</li>
+                        <li>数据类型转换</li>
+                        <li>运算符（算术、比较、逻辑）</li>
+                        <li>流程控制语句（if-else条件语句）</li>
+                        <li>循环语句（for/while循环）</li>
+                        <li>循环控制（break、continue）</li>
+                        <li>业务逻辑表达与代码骨架构建</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-layer-group"></i> 模块二：核心数据结构</h3>
+                    <ul>
+                        <li>列表（List）：增删改查与切片操作</li>
+                        <li>字典（Dictionary）：创建、访问和嵌套操作</li>
+                        <li>元组（Tuple）：不可变性与应用场景</li>
+                        <li>集合（Set）：去重特性</li>
+                        <li>容器嵌套：处理复杂的嵌套结构</li>
+                        <li>JSON格式数据处理</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-cogs"></i> 模块三：函数与模块化思维</h3>
+                    <ul>
+                        <li>函数定义与调用</li>
+                        <li>形参、实参和返回值</li>
+                        <li>常用内置函数（len()、range()、type()、enumerate()）</li>
+                        <li>Lambda表达式</li>
+                        <li>模块与包的导入</li>
+                        <li>指令封装与AI交互</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-file-alt"></i> 模块四：文件操作与异常处理</h3>
+                    <ul>
+                        <li>文件的打开与关闭</li>
+                        <li>上下文管理器（with语句）</li>
+                        <li>CSV文件读写</li>
+                        <li>JSON文件读写</li>
+                        <li>异常处理（try-except结构）</li>
+                        <li>异常的抛出与自定义</li>
+                        <li>程序健壮性设计</li>
+                    </ul>
+                </div>
+                <div class="module">
+                    <h3><i class="fas fa-chart-line"></i> 模块五：数据分析"三剑客"</h3>
+                    <ul>
+                        <li>NumPy：多维数组和矩阵运算</li>
+                        <li>Pandas：Series和DataFrame结构</li>
+                        <li>数据读取、清洗、筛选和分组聚合</li>
+                        <li>Matplotlib/Seaborn：数据可视化基础</li>
+                        <li>折线图、柱状图、饼图绘制</li>
+                        <li>AI与业务应用桥梁</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="learning-path" id="learning-path">
+        <div class="container">
+            <h2>学习路径</h2>
+            <div class="path-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>核心语法与逻辑控制</h3>
+                        <p>掌握与AI沟通的底层词汇，包括变量、数据类型、运算符和流程控制语句，培养业务逻辑表达能力。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>核心数据结构</h3>
+                        <p>学习数据流转的"集装箱"，重点掌握列表、字典等数据结构，以及容器嵌套处理复杂数据。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>函数与模块化思维</h3>
+                        <p>掌握驾驭AI的"指令封装术"，学习函数定义与调用，以及模块与包的导入，培养系统架构思维。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>文件操作与异常处理</h3>
+                        <p>学习数据获取的"护城河"，掌握文件读写操作和异常处理机制，提高程序的健壮性。</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>数据分析"三剑客"</h3>
+                        <p>学习直通AI与业务的"核心引擎"，掌握NumPy、Pandas和Matplotlib/Seaborn，为数据分析专业学习打下基础。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="start-learning" id="start-learning">
+        <div class="container">
+            <h2>开始你的Python学习之旅</h2>
+            <p>跟随本课程的学习路径，循序渐进地掌握Python编程技能</p>
+            <a href="#" class="btn">开始学习</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Python基础课程学习站点. 专注于Python编程基础素养培养.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 全局变量
+        let pyodide;
+        let editor;
+        
+        // 初始化Pyodide
+        async function initPyodide() {
+            try {
+                pyodide = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.1/full/"
+                });
+                console.log("Pyodide initialized successfully");
+            } catch (error) {
+                console.error("Error initializing Pyodide:", error);
+                document.getElementById('codeOutput').textContent = `Error initializing Python: ${error.message}`;
+            }
+        }
+        
+        // 初始化CodeMirror编辑器
+        function initCodeMirror() {
+            editor = CodeMirror.fromTextArea(document.getElementById('codeEditor'), {
+                mode: "python",
+                theme: "monokai",
+                lineNumbers: true,
+                indentUnit: 4,
+                tabSize: 4,
+                indentWithTabs: false,
+                autofocus: false
+            });
+        }
+        
+        // 切换代码运行器的折叠/展开状态
+        function toggleCodeRunner() {
+            const runner = document.getElementById('codeRunner');
+            const toggle = document.getElementById('runnerToggle');
+            const content = runner.querySelector('.code-runner-content');
+            
+            if (runner.classList.contains('collapsed')) {
+                runner.classList.remove('collapsed');
+                toggle.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                if (content) {
+                    content.style.display = 'block';
+                }
+            } else {
+                runner.classList.add('collapsed');
+                toggle.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                if (content) {
+                    content.style.display = 'none';
+                }
+            }
+        }
+        
+        // 页面加载时初始化折叠状态
+        window.onload = async function() {
+            initCodeMirror();
+            await initPyodide();
+            // 默认展开状态
+            const runner = document.getElementById('codeRunner');
+            const content = runner.querySelector('.code-runner-content');
+            if (content) {
+                content.style.display = 'block';
+            }
+        };
+        
+        // 运行代码
+        async function runCode() {
+            const code = editor.getValue();
+            const output = document.getElementById('codeOutput');
+            
+            if (!pyodide) {
+                output.textContent = "Python is still initializing... Please try again in a moment.";
+                return;
+            }
+            
+            try {
+                output.textContent = "Running...";
+                
+                // 重定向标准输出
+                pyodide.runPython(`
+                    import sys
+                    sys.stdout = sys.stderr
+                `);
+                
+                // 运行用户代码
+                const result = await pyodide.runPythonAsync(code);
+                
+                // 获取输出
+                const stdout = pyodide.runPython(`
+                    import sys
+                    sys.stdout.getvalue()
+                `);
+                
+                if (stdout) {
+                    output.textContent = stdout;
+                } else if (result !== undefined) {
+                    output.textContent = result.toString();
+                } else {
+                    output.textContent = "Code executed successfully.";
+                }
+            } catch (error) {
+                output.textContent = `Error: ${error.message}`;
+            }
+        }
+        
+        // 清空输出
+        function clearOutput() {
+            document.getElementById('codeOutput').textContent = "输出将显示在这里...";
+        }
+        
+        // 重置代码
+        function resetCode() {
+            editor.setValue('# 在此输入Python代码\nprint(\'Hello, Python!\')\nx = 10\ny = 20\nprint(f\'Sum: {x + y}\')');
+        }
+        
+        // 加载示例代码
+        function loadExample(example) {
+            const examples = {
+                'basic': `# 基础语法示例
+# 变量和数据类型
+name = "Python"
+age = 32
+pi = 3.14159
+is_cool = True
+
+# 打印输出
+print("Hello, " + name + "!")
+print(f"Python is {age} years old")
+print(f"Pi is approximately {pi}")
+print(f"Is Python cool? {is_cool}")
+
+# 条件语句
+if age > 30:
+    print("Python is mature")
+elif age > 20:
+    print("Python is young")
+else:
+    print("Python is new")
+
+# 循环
+print("Counting to 5:")
+for i in range(1, 6):
+    print(i)
+
+print("Counting down from 5:")
+i = 5
+while i > 0:
+    print(i)
+    i -= 1`,
+                'data-structures': `# 数据结构示例
+# 列表
+fruits = ["apple", "banana", "cherry"]
+print("Fruits:", fruits)
+print("First fruit:", fruits[0])
+
+# 添加元素
+fruits.append("orange")
+print("After append:", fruits)
+
+# 字典
+person = {
+    "name": "Alice",
+    "age": 30,
+    "city": "New York"
+}
+print("Person:", person)
+print("Name:", person["name"])
+
+# 元组
+colors = ("red", "green", "blue")
+print("Colors:", colors)
+
+# 集合
+numbers = {1, 2, 3, 4, 5}
+print("Numbers:", numbers)
+
+# 列表推导式
+squares = [x**2 for x in range(1, 6)]
+print("Squares:", squares)`,
+                'functions': `# 函数示例
+# 基本函数
+def greet(name):
+    """问候函数"""
+    return f"Hello, {name}!"
+
+print(greet("World"))
+
+# 带默认参数的函数
+def calculate_total(price, tax=0.08):
+    """计算总价"""
+    return price * (1 + tax)
+
+print(f"Total: ${calculate_total(100):.2f}")
+print(f"Total with custom tax: ${calculate_total(100, 0.1):.2f}")
+
+# 可变参数
+def sum_numbers(*args):
+    """求和函数"""
+    return sum(args)
+
+print(f"Sum: {sum_numbers(1, 2, 3, 4, 5)}")
+
+# Lambda函数
+double = lambda x: x * 2
+print(f"Double 5: {double(5)}")
+
+# 内置函数
+numbers = [3, 1, 4, 1, 5, 9, 2, 6]
+print(f"Max: {max(numbers)}")
+print(f"Min: {min(numbers)}")
+print(f"Sum: {sum(numbers)}")
+print(f"Length: {len(numbers)}")`,
+                'oop': `# 面向对象示例
+# 基本类定义
+class Person:
+    """人员类"""
+    def __init__(self, name, age):
+        """构造函数"""
+        self.name = name
+        self.age = age
+    
+    def greet(self):
+        """问候方法"""
+        return f"Hello, my name is {self.name} and I'm {self.age} years old."
+    
+    def celebrate_birthday(self):
+        """庆祝生日"""
+        self.age += 1
+        return f"Happy birthday! I'm now {self.age} years old."
+
+# 创建对象
+person = Person("Alice", 30)
+print(person.greet())
+print(person.celebrate_birthday())
+
+# 继承
+class Student(Person):
+    """学生类，继承自Person"""
+    def __init__(self, name, age, student_id):
+        """构造函数"""
+        super().__init__(name, age)
+        self.student_id = student_id
+    
+    def study(self, subject):
+        """学习方法"""
+        return f"{self.name} is studying {subject}."
+
+# 创建学生对象
+student = Student("Bob", 20, "S12345")
+print(student.greet())
+print(student.study("Python"))
+
+# 多态
+class Animal:
+    """动物基类"""
+    def speak(self):
+        """发出声音"""
+        pass
+
+class Dog(Animal):
+    """狗类"""
+    def speak(self):
+        return "Woof!"
+
+class Cat(Animal):
+    """猫类"""
+    def speak(self):
+        return "Meow!"
+
+# 多态示例
+animals = [Dog(), Cat()]
+for animal in animals:
+    print(animal.speak())`, 
+                'files': `# 文件操作示例
+# 写入文件
+with open('example.txt', 'w') as f:
+    f.write('Hello, File!\n')
+    f.write('This is a test.\n')
+
+# 读取文件
+with open('example.txt', 'r') as f:
+    content = f.read()
+    print("File content:")
+    print(content)
+
+# 逐行读取
+print("\nReading line by line:")
+with open('example.txt', 'r') as f:
+    for line in f:
+        print(line.strip())
+
+# 异常处理
+try:
+    with open('non_existent_file.txt', 'r') as f:
+        content = f.read()
+except FileNotFoundError as e:
+    print(f"Error: {e}")
+except Exception as e:
+    print(f"Unexpected error: {e}")
+else:
+    print("File read successfully")
+finally:
+    print("File operation completed")`,
+                'pandas': `# Pandas示例
+import pandas as pd
+
+# 创建DataFrame
+data = {
+    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
+    'Age': [25, 30, 35, 40],
+    'City': ['New York', 'London', 'Paris', 'Tokyo']
+}
+
+df = pd.DataFrame(data)
+print("DataFrame:")
+print(df)
+
+print("\nFirst 2 rows:")
+print(df.head(2))
+
+print("\nAge column:")
+print(df['Age'])
+
+print("\nPeople over 30:")
+print(df[df['Age'] > 30])
+
+print("\nAverage age:")
+print(df['Age'].mean())
+
+# 保存为CSV
+df.to_csv('people.csv', index=False)
+print("\nData saved to people.csv")
+
+# 读取CSV
+print("\nReading from people.csv:")
+df_from_csv = pd.read_csv('people.csv')
+print(df_from_csv)`
+            };
+            
+            if (example && examples[example]) {
+                editor.setValue(examples[example]);
+            }
+        }
+        
+        // 页面加载完成后初始化
+        window.onload = async function() {
+            initCodeMirror();
+            await initPyodide();
+        };
+    </script>
+</body>
+</html>
